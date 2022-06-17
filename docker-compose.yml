@@ -1,0 +1,39 @@
+version: '3'
+
+volumes:
+  postgres_data: {}
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DATABASE=postgres
+  flask_app:
+    build: data_service/.
+    container_name: data_service
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=mysecretpassword
+      - DB_DATABASE=postgres
+      - DB_PORT=5432
+      - DB_HOST=db
+    depends_on:
+      - data_loader_app
+  data_loader_app:
+    build: loader_service/.
+    container_name: loader_service
+    restart: unless-stopped
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=mysecretpassword
+      - DB_DATABASE=postgres
+      - DB_PORT=5432
+      - DB_HOST=db
+    depends_on:
+      - db

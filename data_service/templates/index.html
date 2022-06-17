@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if orders%}
+
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Номер заказа</th>
+      <th scope="col">Стоимость, $</th>
+      <th scope="col">Стоимость, ₽</th>
+      <th scope="col">Срок поставки</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for order in orders %}
+    <tr>
+      <th scope="row">{{ order.order_id }}</th>
+      <td>{{ order.order_number }}</td>
+      <td>{{ order.price_usd }}</td>
+      <td>{{ order.price_rub }}</td>
+      <td>{{ order.delivery_date }}</td>
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <h1>Добро пожаловать на наш кулинарный сайт!</h1>
+                <p>Здесь вы можете просмотреть рецепты для приготовления разнообразных блюд, которые отлично подойдут, как на завтрак,
+                так и на обед или ужин. Просто выберите интересующую Вас категорию.</p>
+            </div>
+            <div class="col-4">
+                <img style="height: 300px" src="https://knowhow.pp.ua/wp-content/uploads/2020/03/griby-masliny-picca-0320.jpg" alt="Food">
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

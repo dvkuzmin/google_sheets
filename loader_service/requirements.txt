@@ -1,0 +1,5 @@
+google-api-python-client==2.50.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.5.2
+psycopg2-binary==2.9.3
+SQLAlchemy==1.4.37
