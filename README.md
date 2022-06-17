@@ -6,7 +6,7 @@
 ### Развертывание
 Скачайте проект с помощью команды:
     
-    git clone https://....
+    git clone https://github.com/dvkuzmin/google_sheets
 
 В проекте перейдите в каталог loader_service, в нем нужно разместить файл с учетными данными
 google API. Для этого нужно создать проект на https://console.cloud.google.com/, получить учетные данные
